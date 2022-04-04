@@ -25,7 +25,7 @@ public class EchoServer {
 
             while (!this.serverSocket.isClosed()) {
 
-                Socket clientSocket = this.serverSocket.accept();
+                Socket clientSocket = this.serverSocket.accept(); // ligger och väntar och koden fortsätter inte förrän en client har anslutet
                 System.out.println("A client has connected from: " + clientSocket.getInetAddress().getHostAddress());
 
                 new EchoClient(clientSocket).start();
