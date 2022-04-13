@@ -81,9 +81,14 @@ public class EchoClient implements Runnable {
             OutputStream outputStream = this.socket.getOutputStream();
 
             while (!socket.isClosed()) {
-                int count = inputStream.read(buffer);
+                int count = inputStream.read(buffer);  //hur långt orden är som man får in..så skickar inte med tomma saker..kom ihåg hela arrayen är ju annars 256 som vi satt ovan.
+                // inputStream read gör två saker läser in bytesen och sparar dem i parametern, buffer.. men sedan också returnerar antalet bytes den fick in ..
 
-                System.out.println("From client: " + new String(buffer, 0, count));
+                System.out.println(buffer[0]); // får char koden, ett nummer, för tecknet den får in
+                System.out.println(buffer[1]);
+                System.out.println(count);
+                System.out.println("From client: " + new String(buffer, 0, count)); // skapar en string av en byte array
+
 
                 outputStream.write(buffer, 0, count);
                 outputStream.flush();
